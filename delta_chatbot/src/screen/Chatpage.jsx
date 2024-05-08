@@ -107,7 +107,7 @@ export default function Chatpage(props) {
         storageItems.push(
           <div className='flex flex-col gap-y-[25px] h-fit  w-[90%]  md:w-[75%]'>
             <div className={`pl-[10px] pr-[30px] rounded-[10px] ${props.isLight ? 'question-light' : 'question-dark'} gap-x-[20px] min-h-[50px] max-w-[90%] py-[10px] h-fit w-fit flex items-center `}>
-              <p className={`w-[20px] h-[20px] md:w-[25px] md:h-[25px] ${props.isLight ? 'nav-icon-dark' : 'nav-icon-light'} flex mb-[2px]  justify-center items-center rounded-[50%]`}><i class="fa-solid fa-user"></i></p>
+              <p className={`w-[20px] h-[20px] md:w-[25px] md:h-[25px] ${props.isLight ? 'nav-icon-dark' : 'nav-icon-light'} flex mb-[2px]  justify-center items-center rounded-[50%]`}> <img className='rounded-[50%]' src={localStorage.getItem('user_image')} alt="" /> </p>
               <p className='font-[GoogleBold] text-[17px] leading-[27px] text-wrap max-w-[85%]' >
                 {
                   items[i][0]
@@ -137,7 +137,7 @@ export default function Chatpage(props) {
         storageItems.push(
           <div className='flex flex-col gap-y-[25px] h-fit  w-[90%]  md:w-[75%]'>
             <div className={` pl-[10px] pr-[30px] rounded-[10px] ${props.isLight ? 'question-light' : 'question-dark'} gap-x-[20px] min-h-[30px] max-w-[90%] py-[10px] h-fit w-fit flex items-center`} >
-              <p className={`w-[20px] h-[20px] md:w-[25px] md:h-[25px] ${props.isLight ? 'nav-icon-dark' : 'nav-icon-light'} flex mb-[2px] justify-center items-center rounded-[50%]`}><i class="fa-solid fa-user"></i></p>
+              <p className={`w-[20px] h-[20px] md:w-[25px] md:h-[25px] ${props.isLight ? 'nav-icon-dark' : 'nav-icon-light'} flex mb-[2px] justify-center items-center rounded-[50%]`}><img className='rounded-[50%]' src={localStorage.getItem('user_image')} alt="" />  </p>
               <p className='font-[GoogleBold]  text-[17px] leading-[27px] text-wrap h-fit max-w-[85%]' >
                 {
                   items[i][0]
@@ -229,7 +229,7 @@ export default function Chatpage(props) {
     } else {
       localStorage.setItem('light', false)
     }
-    // localStorage.setItem('name', "Jaiman Soni")
+
   }
 
 
@@ -320,7 +320,7 @@ export default function Chatpage(props) {
               <div className=' flex flex-col items-center overflow-scroll md:overflow-visible  '>
                 <div className='flex flex-col items-center gap-y-[80px] flex-wrap ' >
                   <div className='flex flex-col items-start px-[10px] ' >
-                    <h1 className='  text-white text-[40px] md:text-[60px] main-text '>Welcome, {props.name} </h1>
+                    <h1 className='  text-white text-[40px] md:text-[60px] main-text '>Welcome, {localStorage.getItem('name')} </h1>
                     <h1 className='text-[#2E2E2E] text-[30px] md:text-[50px]'>How are you doing today?</h1>
                   </div>
                   <div className=' grid grid-cols-1 sm:grid-cols-2 md:flex gap-x-[20px] gap-y-[20px] justify-center  flex-wrap ' >

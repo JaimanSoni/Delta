@@ -120,8 +120,8 @@ export default function Landing_Page() {
         .then((res) => {
           setProfile(res.data);
           console.log(res.data)
-          localStorage.setItem('name', profile.name)
-          localStorage.setItem('user_image', profile.picture)
+          localStorage.setItem('name', res.data.name)
+          localStorage.setItem('user_image', res.data.picture)
         })
         .catch((err) => console.log("An error occured while fetching user's data"));
     }
@@ -186,7 +186,7 @@ export default function Landing_Page() {
             <Footer />
           </div> :
           <div>
-            <Chatpage  enabled={enabled} setTheme={setTheme} setEnabled={setEnabled} isLight={isLight} handleTheme={handleTheme} setProfile={setProfile} logout={logout} state={state} name={profile.name} handleLocation={handleLocation} setLocation={setLocation} setState={setState} />
+            <Chatpage  enabled={enabled} setTheme={setTheme} setEnabled={setEnabled} isLight={isLight} handleTheme={handleTheme} setProfile={setProfile} logout={logout} state={state} image={profile.image} name={profile.name} handleLocation={handleLocation} setLocation={setLocation} setState={setState} />
           </div>
       }
     </div>
