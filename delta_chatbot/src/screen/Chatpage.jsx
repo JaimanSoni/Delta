@@ -6,7 +6,10 @@ import axios from 'axios'
 import { Switch } from '@headlessui/react'
 import Typewrite from '../components/Typewrite'
 import logo from "../assets/gdsc-logo.png"
-
+import img1 from "../assets/1.svg"
+import img2 from "../assets/2.svg"
+import img3 from "../assets/3.svg"
+import img4 from "../assets/4.svg"
 
 export default function Chatpage(props) {
 
@@ -37,7 +40,7 @@ export default function Chatpage(props) {
       setStorage(localStorage.getItem('chat').length)
       console.log(storage)
     }
-    try{
+    try {
       if (localStorage.getItem('state') === 'true') {
         props.setState(true)
       } else {
@@ -45,12 +48,12 @@ export default function Chatpage(props) {
         localStorage.setItem('state', 'false')
         props.setState(false)
       }
-    }catch(e){
+    } catch (e) {
       localStorage.setItem('state', 'false')
       props.setState(false)
     }
-    
-    if (localStorage.getItem('onHome')){
+
+    if (localStorage.getItem('onHome')) {
 
       if (localStorage.getItem('onHome') === 'true') {
         props.setLocation(true)
@@ -60,12 +63,12 @@ export default function Chatpage(props) {
         localStorage.setItem('onHome', 'false')
         props.setLocation(false)
       }
-    }else{
+    } else {
       localStorage.removeItem('onHome')
-        localStorage.setItem('onHome', 'true')
-        props.setLocation(true)
+      localStorage.setItem('onHome', 'true')
+      props.setLocation(true)
     }
-    try{
+    try {
 
       if (localStorage.getItem('light') === 'true') {
         props.setTheme(true)
@@ -76,7 +79,7 @@ export default function Chatpage(props) {
         props.setTheme(false)
         props.setEnabled(false)
       }
-    }catch(e){
+    } catch (e) {
       localStorage.setItem('light', 'false')
       props.setEnabled(false)
       props.setTheme(false)
@@ -122,7 +125,7 @@ export default function Chatpage(props) {
                   :
                   <p className="font-[GoogleMedium] text-[17px] text-wrap leading-[27px]" >
                     {/* {items[i][1]} */}
-                    <Typewrite text={items[i][1]} delay={27} /> 
+                    <Typewrite text={items[i][1]} delay={27} />
                     {/* <span className='inline-block h-fit '><i class="fa-solid fa-shuttle-space"></i></span> */}
                   </p>
                 }
@@ -171,7 +174,7 @@ export default function Chatpage(props) {
       if (!localStorage.getItem('chat')) {
         localStorage.setItem('chat', JSON.stringify([]))
       }
-      
+
       let temp = null
       let data_new = [question, ""]
       temp = localStorage.getItem('chat')
@@ -241,7 +244,7 @@ export default function Chatpage(props) {
       <div className={` ${props.isLight ? 'sidebar-light' : 'sidebar-dark'} h-[100vh] w-[50px] sm:w-[75px] hidden sm:flex flex-col justify-between px-[14px] sm:px-[26px] py-[15px] text-nowrap overflow-hidden`}>
         <div className=''>
           <a href="">
-            <i className="fa-solid fa-square-plus mt-[5px] text-[21px] cursor-pointer " onClick={clearStorage} ></i>
+            <i className="fa-solid fa-square-plus mt-[5px] text-[21px] cursor-pointer" onClick={clearStorage} ></i>
           </a>
         </div>
         <div className=''>
@@ -278,9 +281,9 @@ export default function Chatpage(props) {
               </Switch>
 
               {/* <p> */}
-                <i className={`fa-solid fa-square-plus text-[21px] cursor-pointer flex sm:hidden ${props.isLight ? 'text-black' : 'text-white'}`} onClick={clearStorage} ></i>
+              <i className={`fa-solid fa-square-plus text-[21px] cursor-pointer flex sm:hidden ${props.isLight ? 'text-black' : 'text-white'}`} onClick={clearStorage} ></i>
               {/* </p> */}
-              <p className={`w-[20px] h-[20px] md:w-[25px] md:h-[25px] ${props.isLight ? 'nav-icon-dark' : 'nav-icon-light'} flex mb-[2px] justify-center items-center rounded-[50%]`} onClick={handlePopUp} > <img src={logo} className='w-[100px]' alt="" /> </p>
+              <p className={`w-[20px] h-[20px] md:w-[25px] md:h-[25px] ${props.isLight ? 'nav-icon-dark' : 'nav-icon-light'} flex mb-[2px] justify-center items-center rounded-[50%]`} onClick={handlePopUp} > <img src={localStorage.getItem("user_image")} className='w-[100px] rounded-full' alt="" /> </p>
             </div>
 
             <div className={popup ? 'open' : 'close'}>
@@ -325,38 +328,62 @@ export default function Chatpage(props) {
                   </div>
                   <div className=' grid grid-cols-1 sm:grid-cols-2 md:flex gap-x-[20px] gap-y-[20px] justify-center  flex-wrap ' >
 
-                    <div className={` p-[20px] w-[200px] cursor-pointer min-h-[60px] md:w-[170px] md:h-[185px]  ${props.isLight ? 'cards-light' : 'cards-dark'} rounded-[30px]  flex justify-center items-center`}
+                    <div className={`relative p-[20px] w-[200px] cursor-pointer min-h-[60px] h-[170px] md:w-[170px] md:h-[185px]  ${props.isLight ? 'cards-light' : 'cards-dark'} rounded-[30px]  flex justify-center items-start`}
                       onClick={(e) => {
                         e.preventDefault()
                         setValue("Tell me something about GDSC SOU")
                       }}>
-                      Tell me something about GDSC SOU
+                      <p>
+                        Tell me something about GDSC SOU
+                      </p>
+                      <p className=' flex items-center justify-center absolute w-[40px] h-[40px] bg-black rounded-full bottom-[15px] right-[15px] '>
+                        <img src={img1} className='w-[80%]' alt="" />
+                      </p>
+
                     </div>
 
-                    <div className={` p-[20px] w-[200px] cursor-pointer min-h-[60px] md:w-[170px] md:h-[185px] ${props.isLight ? 'cards-light' : 'cards-dark'} rounded-[30px]  flex justify-center items-center `}
+                    <div className={` relative p-[20px] w-[200px] cursor-pointer min-h-[60px] md:w-[170px] h-[170px] md:h-[185px] ${props.isLight ? 'cards-light' : 'cards-dark'} rounded-[30px]  flex justify-center items-start `}
                       onClick={(e) => {
                         e.preventDefault()
                         setValue("How can I get involved with GDSC SOU?")
                       }}>
-                      How can I get involved with GDSC SOU?
+                      <p>
+
+                        How can I get involved with GDSC SOU?
+                      </p>
+                      <p className=' flex items-center justify-center absolute w-[40px] h-[40px] bg-black rounded-full bottom-[15px] right-[15px] '>
+                        <img src={img2} className='w-[60%]' alt="" />
+                      </p>
+
                     </div>
 
-                    <div className={` p-[20px] w-[200px]  cursor-pointer min-h-[60px] md:w-[170px] md:h-[185px] ${props.isLight ? 'cards-light' : 'cards-dark'} rounded-[30px]  flex justify-center items-center`}
+                    <div className={`relative p-[20px] w-[200px]  cursor-pointer min-h-[60px] h-[170px] md:w-[170px] md:h-[185px] ${props.isLight ? 'cards-light' : 'cards-dark'} rounded-[30px]  flex justify-center items-start`}
                       onClick={(e) => {
                         e.preventDefault()
                         setValue("Who are the current members of the GDSC SOU core team?")
                       }}>
-                      Who are the current members of the GDSC SOU core team?
+                      <p>
+
+                        Who are the current members of the GDSC SOU core team?
+                      </p>
+                      <p className=' flex items-center justify-center absolute w-[40px] h-[40px] bg-black rounded-full bottom-[15px] right-[15px] '>
+                        <img src={img3} className='w-[60%]' alt="" />
+                      </p>
                     </div>
 
-                    <div className={`p-[20px] w-[200px] cursor-pointer min-h-[60px] md:w-[170px] md:h-[185px] ${props.isLight ? 'cards-light' : 'cards-dark'} rounded-[30px]  hidden sm:flex justify-center items-center`}
+                    <div className={`relative p-[20px] w-[200px] cursor-pointer min-h-[60px] md:w-[170px] md:h-[185px] ${props.isLight ? 'cards-light' : 'cards-dark'} rounded-[30px]  hidden sm:flex justify-center items-start`}
                       onClick={(e) => {
                         e.preventDefault()
                         setValue("What are GDSC SOU's acheivements and events?")
                       }}>
-                      What are GDSC SOU's acheivements and events?
-                    </div>
+                      <p>
+                        What are GDSC SOU's acheivements and events?
+                      </p>
 
+                      <p className=' flex items-center justify-center absolute w-[40px] h-[40px] bg-black rounded-full bottom-[15px] right-[15px]'>
+                        <img src={img4} className='w-[60%]' alt="" />
+                      </p>
+                    </div>
                   </div>
                 </div>
               </div>
