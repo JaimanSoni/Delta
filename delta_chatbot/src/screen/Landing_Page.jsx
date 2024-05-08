@@ -53,9 +53,12 @@ export default function Landing_Page() {
   // }, []);
   useEffect(() => {
     try{
-      if (localStorage.getItem('state') == 'true') {
+      if (localStorage.getItem('state') === 'true') {
         setState(true)
       } else {
+        console.log("called")
+        localStorage.removeItem('state')
+        localStorage.setItem('state', 'false')
         setState(false)
       }
     }catch(e){
@@ -63,22 +66,35 @@ export default function Landing_Page() {
       setState(false)
     }
     
-    try{
-      if (localStorage.getItem('onHome') == 'true') {
-        setLocation(true)
-      } else {
-        setLocation(false)
-      }
-    }catch(e){
-      localStorage.setItem('onHome', 'true')
-      setLocation(true)
-    }
-    try{
+    // try{
+      if (localStorage.getItem('onHome')){
 
-      if (localStorage.getItem('light') == 'true') {
+        if (localStorage.getItem('onHome') === 'true') {
+          setLocation(true)
+        } else {
+          console.log("called")
+          localStorage.removeItem('onHome')
+          localStorage.setItem('onHome', 'false')
+          setLocation(false)
+        }
+      }else{
+        localStorage.removeItem('onHome')
+          localStorage.setItem('onHome', 'true')
+          setLocation(true)
+      }
+    // }catch(e){
+    //   localStorage.setItem('onHome', 'true')
+    //   setLocation(true)
+    // }
+    try{
+      
+      if (localStorage.getItem('light') === 'true') {
         setTheme(true)
         setEnabled(true)
       } else {
+        console.log("called")
+        localStorage.removeItem('light')
+        localStorage.setItem('light', 'false')
         setTheme(false)
         setEnabled(false)
       }
@@ -105,8 +121,9 @@ export default function Landing_Page() {
           setProfile(res.data);
           console.log(res.data)
           localStorage.setItem('name', profile.name)
+          localStorage.setItem('user_image', profile.picture)
         })
-        .catch((err) => console.log("Fucked"));
+        .catch((err) => console.log("An error occured while fetching user's data"));
     }
   }
 
@@ -115,13 +132,13 @@ export default function Landing_Page() {
       try {
         setUser(credentiaResponse)
       } catch (e) {
-        console.log("Errorrooro")
+        console.log("Error : ", e)
       }
       setState(false)
       setLocation(false)
-      console.log("Fetch User called")
+      // console.log("Fetch User called")
       fetchUser(credentiaResponse)
-      console.log("Fetch User Ended")
+      // console.log("Fetch User Ended")
 
       localStorage.removeItem('state')
       localStorage.removeItem('onHome')
@@ -138,6 +155,8 @@ export default function Landing_Page() {
     setLocation(true)
     localStorage.removeItem('state')
     localStorage.removeItem('onHome')
+    localStorage.removeItem("name")
+    localStorage.removeItem("user_image")
     localStorage.setItem('state', true)
     localStorage.setItem('onHome', true)
     googleLogout();
@@ -167,7 +186,7 @@ export default function Landing_Page() {
             <Footer />
           </div> :
           <div>
-            <Chatpage enabled={enabled} setTheme={setTheme} setEnabled={setEnabled} isLight={isLight} handleTheme={handleTheme} setProfile={setProfile} logout={logout} state={state} name={profile.name} handleLocation={handleLocation} setLocation={setLocation} setState={setState} />
+            <Chatpage  enabled={enabled} setTheme={setTheme} setEnabled={setEnabled} isLight={isLight} handleTheme={handleTheme} setProfile={setProfile} logout={logout} state={state} name={profile.name} handleLocation={handleLocation} setLocation={setLocation} setState={setState} />
           </div>
       }
     </div>

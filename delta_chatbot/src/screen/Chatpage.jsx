@@ -33,10 +33,16 @@ export default function Chatpage(props) {
 
   // let question = ""
   useEffect(() => {
+    if (localStorage.getItem('chat')) {
+      setStorage(localStorage.getItem('chat').length)
+      console.log(storage)
+    }
     try{
-      if (localStorage.getItem('state') == 'true') {
+      if (localStorage.getItem('state') === 'true') {
         props.setState(true)
       } else {
+        localStorage.removeItem('state')
+        localStorage.setItem('state', 'false')
         props.setState(false)
       }
     }catch(e){
@@ -44,22 +50,29 @@ export default function Chatpage(props) {
       props.setState(false)
     }
     
-    try{
-      if (localStorage.getItem('onHome') == 'true') {
+    if (localStorage.getItem('onHome')){
+
+      if (localStorage.getItem('onHome') === 'true') {
         props.setLocation(true)
       } else {
+        console.log("called")
+        localStorage.removeItem('onHome')
+        localStorage.setItem('onHome', 'false')
         props.setLocation(false)
       }
-    }catch(e){
-      localStorage.setItem('onHome', 'true')
-      props.setLocation(true)
+    }else{
+      localStorage.removeItem('onHome')
+        localStorage.setItem('onHome', 'true')
+        props.setLocation(true)
     }
     try{
 
-      if (localStorage.getItem('light') == 'true') {
+      if (localStorage.getItem('light') === 'true') {
         props.setTheme(true)
         props.setEnabled(true)
       } else {
+        localStorage.removeItem('light')
+        localStorage.setItem('light', 'false')
         props.setTheme(false)
         props.setEnabled(false)
       }
@@ -204,8 +217,11 @@ export default function Chatpage(props) {
 
   // This function is used to clear the chat data
   const clearStorage = () => {
+    // console.log("called")
     localStorage.removeItem('chat')
     localStorage.setItem('chat', JSON.stringify([]))
+    // props.setLocation(true)
+    setStorage(localStorage.getItem('chat').length)
     localStorage.setItem('state', false)
     localStorage.setItem('onHome', false)
     if (props.isLight) {
@@ -213,7 +229,7 @@ export default function Chatpage(props) {
     } else {
       localStorage.setItem('light', false)
     }
-    localStorage.setItem('name', "Jaiman Soni")
+    // localStorage.setItem('name', "Jaiman Soni")
   }
 
 
@@ -261,9 +277,9 @@ export default function Chatpage(props) {
                 }
               </Switch>
 
-              <p>
-                <i className="fa-solid fa-square-plus text-[21px] cursor-pointer flex sm:hidden " onClick={clearStorage} ></i>
-              </p>
+              {/* <p> */}
+                <i className={`fa-solid fa-square-plus text-[21px] cursor-pointer flex sm:hidden ${props.isLight ? 'text-black' : 'text-white'}`} onClick={clearStorage} ></i>
+              {/* </p> */}
               <p className={`w-[20px] h-[20px] md:w-[25px] md:h-[25px] ${props.isLight ? 'nav-icon-dark' : 'nav-icon-light'} flex mb-[2px] justify-center items-center rounded-[50%]`} onClick={handlePopUp} > <img src={logo} className='w-[100px]' alt="" /> </p>
             </div>
 
@@ -299,12 +315,12 @@ export default function Chatpage(props) {
 
         {
           // here we will check if there is something in chat data or not. If there's nothing to show then we will display welcome user page.
-          storage == 0 ?
+          storage <= 2 ?
             <>
               <div className=' flex flex-col items-center overflow-scroll md:overflow-visible  '>
                 <div className='flex flex-col items-center gap-y-[80px] flex-wrap ' >
                   <div className='flex flex-col items-start px-[10px] ' >
-                    <h1 className='  text-white text-[40px] md:text-[60px] main-text '>Welcome,</h1>
+                    <h1 className='  text-white text-[40px] md:text-[60px] main-text '>Welcome, {props.name} </h1>
                     <h1 className='text-[#2E2E2E] text-[30px] md:text-[50px]'>How are you doing today?</h1>
                   </div>
                   <div className=' grid grid-cols-1 sm:grid-cols-2 md:flex gap-x-[20px] gap-y-[20px] justify-center  flex-wrap ' >
