@@ -8,24 +8,19 @@ DELTA is a chatbot designed to assist members of the Google Developer Student Cl
 ## Features
 - **Interactive Interface**: Engage with DELTA through a user-friendly chat interface.
 - **Information Retrieval**: Access information about upcoming events, workshops, and activities hosted by the community.
-- **Q&A Support**: Ask questions and receive answers on various topics related to technology, programming, and community activities.
-- **Resource Sharing**: Share useful resources such as articles, tutorials, and project repositories with other community members.
-- **Feedback Mechanism**: Provide feedback on events, workshops, and the overall community experience to help improve future activities.
+- **Q&A Support**: Ask questions and receive answers on various topics related to community activities.
 
 ## Technologies Used
 - **Backend**: lamaIndex, FastAPI
-- **Frontend**: React
-- **Deployment**: (Mention where and how the bot is deployed, e.g., Heroku, AWS, etc.)
-- **Other Technologies**: (Any other relevant technologies or libraries used)
+- **Frontend**: React, Tailwind CSS
+- **Deployment**: Cloudflare
 
 ## Getting Started
 To get started with DELTA, follow these steps:
 1. Clone the repository to your local machine.
 2. Install the necessary dependencies for both the backend and frontend.
-3. Configure the environment variables required for the application.
-4. Run the backend server.
-5. Run the frontend application.
-6. Access DELTA through your web browser and start interacting!
+3. Run the frontend application.
+4. Access DELTA through your web browser and start interacting!
 
 ## Contributing
 We welcome contributions from the community to improve and enhance DELTA. If you're interested in contributing, please follow these guidelines:
