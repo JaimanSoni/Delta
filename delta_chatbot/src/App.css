@@ -1,0 +1,216 @@
+@font-face {
+    font-family: 'GoogleBold';
+    src: url('assets/GoogleSans-Bold-v1.27.ttf');
+}
+
+@font-face {
+    font-family: 'GoogleMedium';
+    src: url('assets/GoogleSans-Medium-v1.27.ttf');
+}
+
+@font-face {
+    font-family: 'GoogleRegular';
+    src: url('assets/GoogleSans-Regular-v1.27.ttf');
+}
+
+@font-face {
+    font-family: 'GoogleItalic';
+    src: url('assets/GoogleSansDisplay-Italic-v1.27.ttf');
+}
+
+@font-face {
+    font-family: 'GoogleLight';
+    src: url('assets/OpenSans_SemiCondensed-Light.ttf');
+}
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: black;
+}
+
+.video {
+    position: absolute;
+    z-index: -1;
+    width: 100vw;
+    height: 100vh;
+    object-fit: fill;
+    top: 0px;
+    right: 0;
+    bottom: 0;
+}
+
+::-webkit-scrollbar{
+
+    width: 7px;
+    display: none;
+}
+
+::-webkit-scrollbar-thumb{
+    background-color: black;
+    max-height: 100px;
+}
+::-webkit-scrollbar-track{
+    background-color: #0e0e0e;
+
+}
+
+
+@keyframes rotate {
+    100% {
+        -webkit-transform: rotate(360deg);
+        -moz-transform: rotate(360deg);
+        -ms-transform: rotate(360deg);
+        -o-transform: rotate(360deg);
+        transform: rotate(360deg);
+    }
+}
+
+.rotate-animation {
+    animation: rotate 2s infinite linear;
+}
+
+
+@keyframes bottom-to-top {
+    from {
+        transform: translateY(40%);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0%);
+        opacity: 1;
+    }
+}
+
+.bottom-to-top {
+    animation: bottom-to-top 0.5s linear;
+}
+
+@keyframes fade-in {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+.fade-in {
+    animation: fade-in 0.5s linear;
+}
+
+@keyframes gradient-change {
+	0% {
+		background-position: 0% 70%;
+	}
+	50% {
+		background-position: 70% 100%;
+	}
+	100% {
+		background-position: 0% 70%;
+	}
+}
+
+.back{
+    background-image: linear-gradient(120deg, #ffffff -10%, #449af0 60%, #a5cff7 80%,  #73b9fb 90%);
+    background-size: 300% 300%;
+    animation: gradient-change 7s ease infinite;
+}
+
+.close{
+    display: none;
+}
+.open{
+    display: flex;
+}
+
+.main-text{
+    background: transparent;
+    background-image: linear-gradient(163deg, rgba(172,190,225,1) 0%, rgba(80,23,193,1) 0%, rgba(228,163,175,1) 32%, rgba(146,144,228,1) 65%, rgba(228,163,175,1) 100%);
+    background-clip: text;
+    -webkit-text-fill-color: transparent; 
+    font-weight: bolder;
+}
+
+/* dark and light theme */
+
+.sidebar-dark{
+    transition: 0.3s;
+    background-color: black;
+    color: white;
+}
+.sidebar-light{
+    transition: 0.3s;
+    background-color: #F3F9FF;
+    color: rgb(66, 66, 66);
+}
+
+.chat-background-dark{
+    transition: 0.3s;
+    background-color: #0E0E0E;
+    color: white;
+}
+.chat-background-light{
+    transition: 0.3s;
+    background-color: white;
+    color: black;
+}
+
+.cards-dark{
+    transition: 0.3s;
+    background-color: #181818;
+    color: #818080;
+}
+.cards-light{
+    transition: 0.3s;
+    background-color: #ecf2fe;
+    color: #474141;
+}
+
+.input-dark{
+    transition: 0.3s;
+    background-color: #212121;
+    color: #cdcdcd;
+}
+.input-light{
+    transition: 0.3s;
+    background-color: #ededed;
+    color: #6a6a6a;
+}
+
+.nav-icon-dark{
+    transition: 0.3s;
+    background-color: rgb(53, 53, 53);
+    color: white;
+}
+.nav-icon-light{
+    transition: 0.3s;
+    background-color: white;
+    color: rgb(53, 53, 53);
+}
+
+
+.question-dark{
+    transition: 0.3s;
+    background-color: #212121;
+    color: white;
+}
+.question-light{
+    transition: 0.3s;
+    background-color: #F3F9FF;
+    color: rgb(66, 66, 66);
+}
+
+.response-dark{
+    transition: 0.3s;
+    color: rgba(255, 255, 255, 0.75)
+}
+.response-light{
+    transition: 0.3s;
+    color: rgba(44, 44, 44, 0.75)
+
+}   
